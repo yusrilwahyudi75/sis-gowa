@@ -24,7 +24,7 @@ class SiteHeader extends HTMLElement {
         <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="/">
-                    <img src="/src/assets/logo.png" alt="Logo" width="45" class="me-2">
+                    <img src="/assets/logo.png" alt="Logo" width="45" class="me-2">
                     <span class="fw-bold">SMKN 5 Gowa</span>
                 </a>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -96,7 +96,7 @@ class SiteFooter extends HTMLElement {
                 <div class="row g-5">
                     <div class="col-lg-4">
                         <div class="d-flex align-items-center mb-4">
-                            <img src="/src/assets/logo.png" alt="Logo" width="45" class="me-2">
+                            <img src="/assets/logo.png" alt="Logo" width="45" class="me-2">
                             <h4 class="fw-bold mb-0">SMKN 5 Gowa</h4>
                         </div>
                         <p class="small opacity-75 mb-4">Sekolah Menengah Kejuruan Negeri 5 Gowa berkomitmen untuk menghasilkan lulusan yang kompeten, berkarakter, dan siap bersaing di era industri 4.0.</p>

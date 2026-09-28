@@ -10,7 +10,7 @@ export async function renderHeroCarousel(containerId) {
     slidesHTML += `
         <div class="carousel-item active hero-section text-white d-flex align-items-center">
             <div class="hero-bg position-absolute top-0 start-0 w-100 h-100">
-                <img src="./src/assets/hero.png" alt="Hero" class="w-100 h-100 object-fit-cover">
+                <img src="/assets/hero.png" alt="Hero" class="w-100 h-100 object-fit-cover">
                 <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
             </div>
             <div class="container position-relative z-1 py-5">
@@ -37,7 +37,7 @@ export async function renderHeroCarousel(containerId) {
                 slidesHTML += `
                     <div class="carousel-item hero-section text-white d-flex align-items-center">
                         <div class="hero-bg position-absolute top-0 start-0 w-100 h-100">
-                            <img src="${item.image || item.image_url || './src/assets/hero.png'}" alt="${item.title}" class="w-100 h-100 object-fit-cover">
+                            <img src="${item.image || item.image_url || '/assets/hero.png'}" alt="${item.title}" class="w-100 h-100 object-fit-cover">
                             <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-60"></div>
                         </div>
                         <div class="container position-relative z-1 py-5">
