@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman | SMKN 5 Gowa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+    <site-header></site-header>
+    <page-header title="Pengumuman" subtitle="Informasi penting terkait akademik dan kesiswaan"></page-header>
+    <div class="container py-5 my-4 flex-grow-1">
+        <div class="row g-4" id="announcements-container">
+            <!-- Data Pengumuman akan di-render di sini oleh main.js (renderAnnouncements) -->
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <site-footer></site-footer>
+    <script type="module" src="./src/main.js"></script>
+</body>
+</html>

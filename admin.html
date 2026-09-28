@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | SIS-Gowa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+<body class="bg-light">
+    <!-- Auth Section -->
+    <div id="auth-section" class="d-flex align-items-center justify-content-center min-vh-100">
+        <div class="card border-0 shadow-lg rounded-4 p-4" style="width: 100%; max-width: 400px;">
+            <div class="text-center mb-4">
+                <img src="./src/assets/logo.png" alt="Logo" width="60" class="mb-3">
+                <h3 class="fw-bold">Login Admin</h3>
+                <p class="text-muted small">Masuk untuk mengelola konten sekolah</p>
+            </div>
+            <form id="login-form">
+                <div class="mb-3">
+                    <label class="form-label small fw-bold">Email</label>
+                    <input type="text" id="email" class="form-control rounded-3" placeholder="admin@smkn5gowa.sch.id" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label small fw-bold">Password</label>
+                    <input type="password" id="password" class="form-control rounded-3" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 fw-bold">Masuk</button>
+                <div id="login-error" class="alert alert-danger mt-3 small d-none"></div>
+            </form>
+            <div class="text-center mt-4">
+                <a href="/" class="text-decoration-none small text-muted"><i class="bi bi-arrow-left me-1"></i> Kembali ke Website</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Section (Hidden by default) -->
+    <div id="dashboard-section" class="d-none">
+        <nav class="navbar navbar-dark bg-dark shadow-sm py-3">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="./src/assets/logo.png" alt="Logo" width="35" class="me-2">
+                    <span class="fw-bold">Admin SIS-Gowa</span>
+                </a>
+                <div class="d-flex align-items-center">
+                    <span id="user-email" class="text-white-50 me-3 d-none d-md-block"></span>
+                    <button id="logout-btn" class="btn btn-outline-light btn-sm rounded-pill px-3">Keluar</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container py-5">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 mb-4">
+                    <div class="card border-0 shadow-sm rounded-4 p-3 glass-card">
+                        <ul class="nav nav-pills flex-column fw-medium">
+                            <li class="nav-item">
+                                <a class="nav-link active rounded-3 mb-2" href="#" id="tab-news"><i class="bi bi-newspaper me-2"></i> Kelola Berita</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link rounded-3 mb-2 text-dark" href="#" id="tab-teachers"><i class="bi bi-people me-2"></i> Data Guru</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link rounded-3 mb-2 text-dark" href="#" id="tab-gallery"><i class="bi bi-images me-2"></i> Galeri Foto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link rounded-3 mb-2 text-dark" href="#" id="tab-students"><i class="bi bi-person-badge me-2"></i> Data Siswa</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link rounded-3 mb-2 text-dark" href="#" id="tab-guestbook"><i class="bi bi-journal-text me-2"></i> Buku Tamu</a>
+                            </li>
+                            <li class="nav-item border-top mt-2 pt-2">
+                                <a class="nav-link rounded-3 text-dark" href="#" id="btn-sidebar-settings"><i class="bi bi-gear me-2"></i> Pengaturan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link rounded-3 text-danger fw-semibold" href="#" id="btn-sidebar-logout"><i class="bi bi-box-arrow-right me-2"></i> Keluar</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- News Content -->
+                <div class="col-lg-9" id="content-news">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="fw-bold mb-0">Manajemen Berita</h4>
+                        <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#addNewsModal">
+                            <i class="bi bi-plus-lg me-1"></i> Berita Baru
+                        </button>
+                    </div>
+
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <colgroup>
+                                    <col style="width: 50%;">
+                                    <col style="width: 15%;">
+                                    <col style="width: 20%;">
+                                    <col style="width: 15%;">
+                                </colgroup>
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th class="ps-4">Berita</th>
+                                        <th>Kategori</th>
+                                        <th>Tanggal</th>
+                                        <th class="text-center pe-4">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="news-table-body">
+                                    <!-- Data loaded by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Content (Hidden) -->
+                <div class="col-lg-9 d-none" id="content-teachers">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="fw-bold mb-0">Manajemen Guru</h4>
+                        <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#addTeacherModal">
+                            <i class="bi bi-person-plus me-1"></i> Tambah Guru
+                        </button>
+                    </div>
+
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th class="ps-4">Guru</th>
+                                        <th>Jabatan</th>
+                                        <th class="text-end pe-4">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="teachers-table-body">
+                                    <!-- Data loaded by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Students Content (Hidden) -->
+                <div class="col-lg-9 d-none" id="content-students">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="fw-bold mb-0">Database Siswa</h4>
+                    </div>
+
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden text-center p-5" style="min-height: 50vh; display: flex; align-items: center; justify-content: center;">
+                        <div>
+                            <i class="bi bi-shield-lock text-muted mb-3" style="font-size: 4rem;"></i>
+                            <h4 class="fw-bold">Pratinjau Diblokir oleh Keamanan Google</h4>
+                            <p class="text-muted mb-4" style="max-width: 500px; margin: 0 auto;">
+                                Google Sites tidak mengizinkan halamannya ditampilkan di dalam panel admin ini untuk alasan keamanan. Anda dapat mengakses Database Siswa secara langsung melalui tab baru.
+                            </p>
+                            <a href="https://sites.google.com/view/databasesmkn5gowa/database-smkn-5-gowa" target="_blank" class="btn btn-primary rounded-pill px-5 py-2 fw-bold">
+                                <i class="bi bi-box-arrow-up-right me-2"></i> Buka Database Siswa
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guestbook Content (Hidden) -->
+                <div class="col-lg-9 d-none" id="content-guestbook">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+                        <h4 class="fw-bold mb-0">Buku Tamu</h4>
+                        <div class="d-flex flex-wrap align-items-center gap-2">
+                            <div class="d-flex align-items-center gap-1">
+                                <label for="filter-start-date" class="small text-muted mb-0">Dari:</label>
+                                <input type="date" id="filter-start-date" class="form-control form-control-sm rounded-3" style="width: auto;">
+                            </div>
+                            <div class="d-flex align-items-center gap-1">
+                                <label for="filter-end-date" class="small text-muted mb-0">Sampai:</label>
+                                <input type="date" id="filter-end-date" class="form-control form-control-sm rounded-3" style="width: auto;">
+                            </div>
+                            <button type="button" id="btn-export-guestbook" class="btn btn-primary btn-sm rounded-pill px-3 fw-semibold">
+                                <i class="bi bi-download me-1"></i>Download Rekap
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th class="ps-4">Tanggal & Jam</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>Instansi</th>
+                                        <th>Keperluan</th>
+                                        <th class="text-center pe-4">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="guestbook-table-body">
+                                    <!-- Data loaded by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Content (Hidden) -->
+                <div class="col-lg-9 d-none" id="content-gallery">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 class="fw-bold mb-0">Manajemen Galeri</h4>
+                        <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#addGalleryModal">
+                            <i class="bi bi-plus-lg me-1"></i> Tambah Foto
+                        </button>
+                    </div>
+
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th class="ps-4">Preview</th>
+                                        <th>Judul</th>
+                                        <th>Kategori</th>
+                                        <th class="text-end pe-4">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="gallery-table-body">
+                                    <!-- Data loaded by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add News Modal -->
+    <div class="modal fade" id="addNewsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Tambah Berita Baru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="add-news-form">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Judul Berita</label>
+                            <input type="text" id="news-title" class="form-control rounded-3" placeholder="Masukkan judul..." required>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Kategori</label>
+                                <div class="input-group">
+                                    <select id="news-category" class="form-select rounded-start-3">
+                                        <option value="Kegiatan">Kegiatan</option>
+                                        <option value="Prestasi">Prestasi</option>
+                                        <option value="Pengumuman">Pengumuman</option>
+                                        <option value="Kunjungan">Kunjungan</option>
+                                    </select>
+                                    <button class="btn btn-outline-secondary" type="button" id="btn-add-category-toggle" title="Tambah Kategori Baru">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
+                                <div id="new-category-wrapper" class="mt-2 d-none">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" id="new-category-input" class="form-control" placeholder="Nama kategori baru...">
+                                        <button class="btn btn-primary" type="button" id="btn-save-new-category">Simpan</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-bold">Gambar Berita</label>
+                                <ul class="nav nav-pills nav-fill mb-2 bg-light p-1 rounded-3 small" id="image-upload-tabs" style="font-size: 0.8rem;">
+                                    <li class="nav-item">
+                                        <a class="nav-link active py-1 rounded-2" href="#" id="tab-image-url">Link URL</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link py-1 rounded-2" href="#" id="tab-image-file">Upload File</a>
+                                    </li>
+                                </ul>
+                                <div id="wrapper-image-url">
+                                    <input type="text" id="news-image-url" class="form-control rounded-3" placeholder="https://images.unsplash.com...">
+                                </div>
+                                <div id="wrapper-image-file" class="d-none">
+                                    <input type="file" id="news-image-file" class="form-control rounded-3" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold mb-2">Konten Lengkap</label>
+                            <div id="quill-editor" style="height: 250px; background-color: #fff;" class="rounded-3"></div>
+                        </div>
+                        <div class="d-flex gap-2 justify-content-end">
+                            <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary rounded-pill px-4">Simpan Berita</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Gallery Modal -->
+    <div class="modal fade" id="addGalleryModal" tabindex="-1">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content border-0 shadow rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Tambah Foto Galeri</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="add-gallery-form">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Judul Foto</label>
+                            <input type="text" id="gallery-title" class="form-control rounded-3" placeholder="Contoh: Gedung Sekolah Baru" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Kategori</label>
+                            <select id="gallery-category" class="form-select rounded-3">
+                                <option value="Fasilitas">Fasilitas</option>
+                                <option value="Kegiatan">Kegiatan</option>
+                                <option value="Prestasi">Prestasi</option>
+                                <option value="Lingkungan">Lingkungan</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold">URL Gambar</label>
+                            <input type="text" id="gallery-image" class="form-control rounded-3" placeholder="https://..." required>
+                        </div>
+                        <div class="d-flex gap-2 justify-content-end">
+                            <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary rounded-pill px-4">Unggah Foto</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Teacher Modal -->
+    <div class="modal fade" id="addTeacherModal" tabindex="-1">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content border-0 shadow rounded-4">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Tambah Guru Baru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="add-teacher-form">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Nama Lengkap & Gelar</label>
+                            <input type="text" id="teacher-name" class="form-control rounded-3" placeholder="Contoh: Andi, S.T." required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Jabatan / Mata Pelajaran</label>
+                            <input type="text" id="teacher-position" class="form-control rounded-3" placeholder="Contoh: Guru TJKT" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold">URL Foto</label>
+                            <input type="text" id="teacher-photo" class="form-control rounded-3" placeholder="https://...">
+                            <small class="text-muted x-small">Gunakan link gambar atau biarkan kosong untuk default.</small>
+                        </div>
+                        <div class="d-flex gap-2 justify-content-end">
+                            <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary rounded-pill px-4">Simpan Data</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guestbook Detail Modal -->
+    <div class="modal fade" id="guestbookDetailModal" tabindex="-1" aria-labelledby="guestbookDetailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header bg-primary text-white border-0">
+                    <h5 class="modal-title fw-bold" id="guestbookDetailModalLabel"><i class="bi bi-person-badge me-2"></i>Detail Kunjungan Tamu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="rounded-circle bg-primary bg-opacity-10 d-flex align-items-center justify-content-center me-3" style="width:55px;height:55px;flex-shrink:0">
+                            <i class="bi bi-person-fill text-primary" style="font-size:1.6rem"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-0" id="detail-fullname">-</h5>
+                            <span class="text-muted small" id="detail-phone">-</span>
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-6">
+                            <div class="small text-muted fw-semibold mb-1"><i class="bi bi-calendar3 me-1"></i>Tanggal</div>
+                            <div class="fw-bold" id="detail-date">-</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="small text-muted fw-semibold mb-1"><i class="bi bi-clock me-1"></i>Jam</div>
+                            <div class="fw-bold" id="detail-time">-</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="small text-muted fw-semibold mb-1"><i class="bi bi-building me-1"></i>Instansi / Asal</div>
+                            <div class="fw-bold" id="detail-institution">-</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="small text-muted fw-semibold mb-1"><i class="bi bi-geo-alt me-1"></i>Alamat</div>
+                            <div class="fw-bold" id="detail-address">-</div>
+                        </div>
+                    </div>
+                    <hr class="my-3">
+                    <div class="mb-3">
+                        <div class="small text-muted fw-semibold mb-1"><i class="bi bi-person-check me-1"></i>Menemui</div>
+                        <div class="fw-bold" id="detail-meet-who">-</div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="small text-muted fw-semibold mb-1"><i class="bi bi-briefcase me-1"></i>Maksud Kedatangan</div>
+                        <div class="fw-medium" id="detail-purpose">-</div>
+                    </div>
+                    <div id="detail-impression-wrapper" class="d-none">
+                        <div class="small text-muted fw-semibold mb-1"><i class="bi bi-chat-quote me-1"></i>Kesan & Pesan</div>
+                        <div class="fst-italic text-muted border-start border-primary border-3 ps-3" id="detail-impression">-</div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 justify-content-end">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-danger rounded-pill px-4" id="detail-delete-btn"><i class="bi bi-trash me-1"></i>Hapus Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Glass Confirm Modal -->
+    <div id="customConfirmModal" class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center d-none" style="background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 1100;">
+        <div class="glass-card bg-white rounded-5 p-4 text-center shadow-lg border-0" style="max-width: 400px; width: 90%; animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;">
+            <div class="bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3 shadow" style="width: 60px; height: 60px; font-size: 1.8rem;">
+                <i class="bi bi-exclamation-triangle"></i>
+            </div>
+            <h4 class="fw-bold mb-2 text-dark" id="confirm-modal-title">Konfirmasi Hapus</h4>
+            <p class="text-muted mb-4 small" id="confirm-modal-body">Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat dibatalkan.</p>
+            <div class="d-flex gap-2 justify-content-center">
+                <button id="confirm-modal-cancel" class="btn btn-light rounded-pill px-4 fw-semibold">Batal</button>
+                <button id="confirm-modal-submit" class="btn btn-danger rounded-pill px-4 fw-semibold">Hapus</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./src/admin.js"></script>
+</body>
+</html>

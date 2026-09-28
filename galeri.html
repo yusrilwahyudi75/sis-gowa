@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri | SMKN 5 Gowa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+    <site-header></site-header>
+    <page-header title="Galeri Sekolah" subtitle="Kumpulan momen dan kegiatan SMKN 5 Gowa"></page-header>
+    <div class="container py-5 my-4 flex-grow-1">
+        <!-- Instagram Profile Banner Card -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 glass-card border border-white border-opacity-50">
+            <div class="row align-items-center g-3">
+                <div class="col-md-8 d-flex align-items-center">
+                    <div class="position-relative me-3">
+                        <div class="p-1 rounded-circle ig-gradient-bg">
+                            <img src="/src/assets/logo.png" alt="Logo SMKN 5 Gowa" width="60" height="60" class="rounded-circle bg-white p-1">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="d-flex align-items-center gap-2">
+                            <h5 class="fw-bold mb-0">SMKN 5 Gowa (@smkn5_gowa)</h5>
+                            <i class="bi bi-patch-check-fill text-primary" title="Verifikasi"></i>
+                        </div>
+                        <p class="text-muted small mb-0">Dokumentasi Praktik Industri, Ekstrakurikuler & Prestasi</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="https://www.instagram.com/smkn5_gowa/" target="_blank" rel="noopener noreferrer" class="btn ig-btn rounded-pill px-4 btn-sm fw-bold">
+                        <i class="bi bi-instagram me-1"></i> Buka @smkn5_gowa
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 pb-2 border-bottom">
+            <div class="d-flex flex-wrap gap-2" id="gallery-filter-tabs">
+                <button class="filter-tab-btn active" data-filter="all">Semua Momen</button>
+                <button class="filter-tab-btn" data-filter="school">Galeri Sekolah</button>
+                <button class="filter-tab-btn" data-filter="instagram"><i class="bi bi-instagram me-1"></i> Feed @smkn5_gowa</button>
+            </div>
+            <span class="text-muted small" id="gallery-count-badge">Memuat data...</span>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="row g-4" id="gallery-container">
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <site-footer></site-footer>
+    <script type="module" src="./src/main.js"></script>
+</body>
+</html>

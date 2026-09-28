@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Tamu | SMKN 5 Gowa</title>
+    <meta name="description" content="Formulir Buku Tamu Digital SMKN 5 Gowa.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body class="bg-light">
+    <!-- Global Header Component -->
+    <site-header></site-header>
+
+    <!-- Page Header -->
+    <page-header title="Buku Tamu Digital" subtitle="Selamat datang di SMKN 5 Gowa. Silakan isi form kedatangan Anda di bawah ini."></page-header>
+
+    <!-- Form Section -->
+    <section class="py-5 mb-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5">
+                        <div id="form-error" class="alert alert-danger d-none mb-4 rounded-3">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i> <strong>Gagal!</strong> Terjadi kesalahan saat menyimpan data.
+                        </div>
+
+                        <form id="guestbook-form">
+                            <!-- Waktu Kunjungan (Auto-fill & Readonly) -->
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label class="form-label fw-semibold small text-muted">Tanggal Kunjungan</label>
+                                    <input type="text" id="visit_date" class="form-control bg-light" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold small text-muted">Jam</label>
+                                    <input type="text" id="visit_time" class="form-control bg-light" readonly>
+                                </div>
+                            </div>
+
+                            <hr class="mb-4 opacity-10">
+
+                            <!-- Data Pribadi -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Nama Lengkap <span class="text-danger">*</span></label>
+                                <input type="text" id="fullname" class="form-control p-2 px-3 rounded-3" placeholder="Masukkan nama lengkap" required>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label class="form-label fw-bold">Nomor Telepon / WA <span class="text-danger">*</span></label>
+                                    <input type="tel" id="phone" class="form-control p-2 px-3 rounded-3" placeholder="Contoh: 08123456789" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Asal Instansi <span class="text-danger">*</span></label>
+                                    <input type="text" id="institution" class="form-control p-2 px-3 rounded-3" placeholder="Contoh: Dinas Pendidikan / Wali Murid" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Alamat Lengkap <span class="text-danger">*</span></label>
+                                <textarea id="address" class="form-control p-2 px-3 rounded-3" rows="2" placeholder="Masukkan alamat asal" required></textarea>
+                            </div>
+
+                            <hr class="mb-4 opacity-10">
+
+                            <!-- Tujuan -->
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Menemui Siapa? <span class="text-danger">*</span></label>
+                                <input type="text" id="meet_who" class="form-control p-2 px-3 rounded-3" placeholder="Nama pegawai/guru yang ingin ditemui" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">Maksud Kedatangan <span class="text-danger">*</span></label>
+                                <textarea id="purpose" class="form-control p-2 px-3 rounded-3" rows="3" placeholder="Jelaskan secara singkat tujuan kunjungan Anda" required></textarea>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Pesan & Kesan <span class="text-muted fw-normal">(Opsional)</span></label>
+                                <textarea id="impression" class="form-control p-2 px-3 rounded-3" rows="2" placeholder="Tinggalkan pesan atau kesan Anda untuk kami..."></textarea>
+                            </div>
+
+                            <!-- Captcha Sederhana -->
+                            <div class="card bg-light border-0 rounded-3 p-3 mb-4">
+                                <label class="form-label fw-bold mb-2">Verifikasi Keamanan <span class="text-danger">*</span></label>
+                                <p class="small text-muted mb-2">Buktikan Anda bukan robot dengan menjawab soal matematika berikut:</p>
+                                <div class="d-flex align-items-center gap-3">
+                                    <div class="bg-white px-4 py-2 rounded-3 border fw-bold text-primary fs-5" id="captcha-question">
+                                        5 + 3 = ?
+                                    </div>
+                                    <input type="number" id="captcha-answer" class="form-control p-2 px-3 rounded-3" style="max-width: 150px;" placeholder="Jawaban" required>
+                                </div>
+                                <div id="captcha-error" class="text-danger small mt-2 d-none">Jawaban salah, silakan coba lagi.</div>
+                            </div>
+
+                            <!-- Submit -->
+                            <div class="text-end">
+                                <button type="submit" id="submit-btn" class="btn btn-primary btn-lg rounded-pill px-5 fw-bold transition-hover shadow-sm">
+                                    <i class="bi bi-send-fill me-2"></i> Kirim Buku Tamu
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glass Success Modal -->
+    <div id="success-modal" class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center d-none" style="background: rgba(0,0,0,0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 1055;">
+        <div class="glass-card rounded-5 p-5 text-center shadow-lg" style="max-width: 450px; width: 90%; animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;">
+            <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-4 shadow" style="width: 80px; height: 80px; font-size: 2.5rem;">
+                <i class="bi bi-check-lg"></i>
+            </div>
+            <h3 class="fw-bold mb-3 text-dark">Terima Kasih!</h3>
+            <p class="text-muted mb-4 fs-6">Data kunjungan Anda telah berhasil disimpan dengan aman di sistem kami.</p>
+            <button id="close-modal-btn" class="btn btn-primary btn-lg rounded-pill px-5 fw-bold shadow-sm transition-hover">OK, Mengerti</button>
+        </div>
+    </div>
+
+    <!-- Global Footer Component -->
+    <site-footer></site-footer>
+
+    <!-- Scripts -->
+    <script type="module" src="./src/buku-tamu.js"></script>
+</body>
+
+</html>

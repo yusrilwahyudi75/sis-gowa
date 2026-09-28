@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi SMKN 5 Gowa | SIS-Gowa</title>
+    <meta name="description"
+        content="Website resmi SMKN 5 Gowa. Informasi sekolah, jurusan, layanan e-Raport, dan berita terbaru.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+    <!-- Global Header Component -->
+    <site-header></site-header>
+
+    <!-- Hero Carousel Section -->
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner" id="hero-carousel-inner">
+            <!-- Loading Slide -->
+            <div class="carousel-item active hero-section text-white d-flex align-items-center">
+                <div class="hero-bg position-absolute top-0 start-0 w-100 h-100">
+                    <img src="./src/assets/hero.png" alt="Hero" class="w-100 h-100 object-fit-cover">
+                    <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+                </div>
+                <div class="container position-relative z-1 py-5">
+                    <div class="row">
+                        <div class="col-lg-8 animate-fade-in-up">
+                            <span class="badge bg-warning text-dark px-3 py-2 rounded-pill mb-3 fw-bold"><i class="bi bi-clock-history me-1"></i> SPMB 2026 Ditutup • SPMB 2027 Segera Hadir</span>
+                            <h1 class="display-3 fw-bold mb-4">Persiapkan Masa Depanmu di <span
+                                    class="text-primary-light">SMKN 5 Gowa</span></h1>
+                            <p class="lead mb-4 opacity-85">Pendaftaran SPMB T.A 2026/2027 telah resmi ditutup. Pembukaan SPMB T.A 2027/2028 diperkirakan dibuka pada <strong>Mei 2027</strong>.</p>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <button class="btn btn-primary btn-lg rounded-pill px-4 fw-bold" data-bs-toggle="modal" data-bs-target="#spmbModal"><i class="bi bi-file-earmark-check me-2"></i>Syarat Pendaftaran</button>
+                                <a href="https://spmb.sulselprov.go.id/" target="_blank" rel="noopener noreferrer"
+                                    class="btn btn-outline-light btn-lg rounded-pill px-4 fw-bold"><i class="bi bi-box-arrow-up-right me-2"></i>Portal SPMB Sulsel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Statistics Section -->
+    <section class="stats-section py-5 bg-white">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-3">
+                    <h2 class="display-5 fw-bold text-primary">1200+</h2>
+                    <p class="text-muted">Siswa Aktif</p>
+                </div>
+                <div class="col-md-3">
+                    <h2 class="display-5 fw-bold text-primary">85+</h2>
+                    <p class="text-muted">Guru Sertifikasi</p>
+                </div>
+                <div class="col-md-3">
+                    <h2 class="display-5 fw-bold text-primary">5</h2>
+                    <p class="text-muted">Jurusan Unggulan</p>
+                </div>
+                <div class="col-md-3">
+                    <h2 class="display-5 fw-bold text-primary">50+</h2>
+                    <p class="text-muted">Mitra Industri</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Departments Section -->
+    <section id="jurusan" class="py-5 bg-white">
+        <div class="container-fluid px-lg-5">
+            <div class="row mb-5 text-center justify-content-center">
+                <div class="col-lg-7">
+                    <h2 class="display-6 fw-bold mb-3">Program Keahlian</h2>
+                    <p class="text-muted">Pilih jurusan yang sesuai dengan minat dan bakatmu untuk membangun karir masa
+                        depan.</p>
+                </div>
+            </div>
+            <div class="row" id="departments-container">
+                <!-- Content will be rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="berita" class="py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5 text-center justify-content-center">
+                <div class="col-lg-7">
+                    <h2 class="display-6 fw-bold mb-3">Berita Terbaru</h2>
+                    <p class="text-muted">Ikuti perkembangan dan kegiatan terbaru di sekolah kami.</p>
+                </div>
+            </div>
+            <div class="row" id="news-container">
+                <!-- News cards will go here -->
+                <div class="col-lg-4 mb-4">
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                        <img src="https://images.unsplash.com/photo-1523050853064-8902804b8b6a?q=80&w=800"
+                            class="card-img-top" alt="News">
+                        <div class="card-body p-4">
+                            <span class="badge bg-primary-light bg-opacity-10 text-primary mb-3">Kegiatan</span>
+                            <h5 class="fw-bold mb-3">Pelatihan Berbasis Industri untuk Jurusan TJKT</h5>
+                            <p class="text-muted small mb-4">SMKN 5 Gowa bekerja sama dengan Mikrotik Indonesia dalam
+                                menyelenggarakan sertifikasi MTCNA...</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <small class="text-muted">2 Mei 2026</small>
+                                <a href="#" class="text-primary text-decoration-none fw-semibold small">Baca
+                                    Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="/berita.html" class="btn btn-outline-primary rounded-pill px-5">Lihat Semua Berita</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Announcements Section -->
+    <section id="pengumuman" class="py-5">
+        <div class="container">
+            <div class="row mb-5 text-center justify-content-center">
+                <div class="col-lg-7">
+                    <h2 class="display-6 fw-bold mb-3">Pengumuman</h2>
+                    <p class="text-muted">Informasi penting dan pengumuman resmi dari pihak sekolah.</p>
+                </div>
+            </div>
+            <div class="row" id="announcements-container">
+                <!-- Announcements will be rendered by JS -->
+            </div>
+            <div class="text-center mt-5">
+                <a href="/pengumuman.html" class="btn btn-outline-primary rounded-pill px-5">Lihat Semua Pengumuman</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPMB 2027 Section & Countdown -->
+    <section class="py-5">
+        <div class="container">
+            <div class="bg-primary p-5 rounded-5 text-white text-center position-relative overflow-hidden shadow-lg">
+                <div class="position-relative z-1">
+                    <span class="badge bg-warning text-dark px-3 py-2 rounded-pill mb-3 fw-bold"><i class="bi bi-calendar-event me-1"></i> ESTIMASI PEMBUKAAN: MEI 2027</span>
+                    <h2 class="display-5 fw-bold mb-2">SPMB T.A 2027/2028 Segera Hadir</h2>
+                    <p class="lead mb-4 opacity-85" style="max-width: 650px; margin: 0 auto;">Pendaftaran SPMB T.A 2026/2027 telah resmi ditutup. Pendaftaran murid baru T.A 2027/2028 diperkirakan dibuka pada <strong>Mei 2027</strong>. Hitung mundur pendaftaran:</p>
+                    
+                    <!-- Countdown Widget -->
+                    <div class="countdown-container mb-4" id="spmb-countdown">
+                        <div class="countdown-box">
+                            <div class="countdown-num" id="cd-days">00</div>
+                            <div class="countdown-label">Hari</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-num" id="cd-hours">00</div>
+                            <div class="countdown-label">Jam</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-num" id="cd-minutes">00</div>
+                            <div class="countdown-label">Menit</div>
+                        </div>
+                        <div class="countdown-box">
+                            <div class="countdown-num" id="cd-seconds">00</div>
+                            <div class="countdown-label">Detik</div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-3 justify-content-center flex-wrap">
+                        <button class="btn btn-light btn-lg rounded-pill px-4 fw-bold text-primary" data-bs-toggle="modal" data-bs-target="#spmbModal"><i class="bi bi-file-earmark-check me-2"></i>Persiapan & Syarat Berkas</button>
+                        <a href="https://spmb.sulselprov.go.id/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light btn-lg rounded-pill px-4 fw-bold"><i class="bi bi-box-arrow-up-right me-2"></i>Portal SPMB Sulsel</a>
+                    </div>
+                </div>
+                <!-- Abstract circles for decoration -->
+                <div class="position-absolute top-0 end-0 bg-white opacity-10 rounded-circle"
+                    style="width: 200px; height: 200px; transform: translate(50%, -50%);"></div>
+                <div class="position-absolute bottom-0 start-0 bg-white opacity-10 rounded-circle"
+                    style="width: 150px; height: 150px; transform: translate(-50%, 50%);"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unified Gallery & Instagram Section -->
+    <section id="galeri" class="py-5 bg-white border-top">
+        <div class="container py-3">
+            <!-- Header Card Banner -->
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 glass-card border border-white border-opacity-50">
+                <div class="row align-items-center g-3">
+                    <div class="col-md-7 d-flex align-items-center">
+                        <div class="position-relative me-3">
+                            <div class="p-1 rounded-circle ig-gradient-bg">
+                                <img src="/src/assets/logo.png" alt="Profile SMKN 5 Gowa" width="60" height="60" class="rounded-circle bg-white p-1">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="d-flex align-items-center gap-2">
+                                <h4 class="fw-bold mb-0 text-dark">Galeri & Feed @smkn5_gowa</h4>
+                                <i class="bi bi-patch-check-fill text-primary" title="Akun Resmi"></i>
+                            </div>
+                            <p class="text-muted small mb-0">Momen berharga, kegiatan siswa & update terkini Instagram sekolah</p>
+                        </div>
+                    </div>
+                    <div class="col-md-5 text-md-end d-flex gap-2 justify-content-md-end flex-wrap">
+                        <a href="https://www.instagram.com/smkn5_gowa/" target="_blank" rel="noopener noreferrer" class="btn ig-btn rounded-pill px-4 btn-sm fw-bold">
+                            <i class="bi bi-instagram me-1"></i> Follow @smkn5_gowa
+                        </a>
+                        <a href="/galeri.html" class="btn btn-outline-primary rounded-pill px-4 btn-sm fw-bold">
+                            Lihat Semua <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unified Filter Tabs -->
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 pb-2 border-bottom">
+                <div class="d-flex flex-wrap gap-2" id="home-gallery-filter-tabs">
+                    <button class="filter-tab-btn active" data-filter="all">Semua Momen</button>
+                    <button class="filter-tab-btn" data-filter="school">Galeri Sekolah</button>
+                    <button class="filter-tab-btn" data-filter="instagram"><i class="bi bi-instagram me-1"></i> Feed @smkn5_gowa</button>
+                </div>
+                <span class="text-muted small" id="home-gallery-count-badge">Memuat galeri...</span>
+            </div>
+
+            <!-- Merged Gallery Container -->
+            <div class="row g-4" id="home-unified-gallery">
+                <!-- Loaded dynamically by main.js -->
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="text-center mt-5">
+                <a href="/galeri.html" class="btn btn-primary rounded-pill px-5 py-2 fw-bold shadow-sm">
+                    Jelajahi Galeri Lengkap <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal SPMB 2027 Requirements -->
+    <div class="modal fade" id="spmbModal" tabindex="-1" aria-labelledby="spmbModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="modal-header bg-primary text-white border-0 py-3">
+                    <h5 class="modal-title fw-bold" id="spmbModalLabel"><i class="bi bi-info-circle me-2"></i>Informasi Persyaratan & Berkas SPMB 2027</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="alert alert-info rounded-3 small mb-4">
+                        <i class="bi bi-info-circle-fill me-2"></i> Pendaftaran SPMB Tahun Ajaran 2026/2027 telah resmi <strong>DITUTUP</strong>. Informasi berikut disiapkan untuk persiapan pendaftaran periode berikutnya pada <strong>Mei 2027</strong>.
+                    </div>
+                    
+                    <h6 class="fw-bold mb-3 text-primary"><i class="bi bi-folder-check me-2"></i>Dokumen Persyaratan Umum yang Perlu Disiapkan:</h6>
+                    <ul class="list-group list-group-flush mb-4 small border rounded-3">
+                        <li class="list-group-item d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Ijazah SMP/MTs/Sederajat atau Surat Keterangan Lulus (SKL) Asli</li>
+                        <li class="list-group-item d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Kartu Keluarga (KK) yang diterbitkan minimal 1 tahun sebelum pendaftaran</li>
+                        <li class="list-group-item d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Akta Kelahiran Calon Peserta Didik Baru</li>
+                        <li class="list-group-item d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Kartu NISN (Nomor Induk Siswa Nasional) Asli</li>
+                        <li class="list-group-item d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Pasfoto berwarna terbaru ukuran 3x4 cm (latar merah/biru)</li>
+                    </ul>
+
+                    <h6 class="fw-bold mb-3 text-primary"><i class="bi bi-diagram-3 me-2"></i>Jalur Pendaftaran Vokasi (SMK):</h6>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 bg-light p-3 rounded-3 text-center">
+                                <i class="bi bi-award text-primary mb-2 display-6"></i>
+                                <h6 class="fw-bold">Jalur Prestasi</h6>
+                                <p class="x-small text-muted mb-0">Prestasi akademik (Nilai Rapor) atau Non-Akademik (Lomba/Sertifikat).</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 bg-light p-3 rounded-3 text-center">
+                                <i class="bi bi-geo-alt text-primary mb-2 display-6"></i>
+                                <h6 class="fw-bold">Jalur Domisili / Zonasi</h6>
+                                <p class="x-small text-muted mb-0">Berdasarkan jarak tempat tinggal calon siswa dengan sekolah.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 bg-light p-3 rounded-3 text-center">
+                                <i class="bi bi-heart-pulse text-primary mb-2 display-6"></i>
+                                <h6 class="fw-bold">Jalur Afirmasi</h6>
+                                <p class="x-small text-muted mb-0">Pemegang kartu KIP/PKH/KKS untuk keluarga pra-sejahtera.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center pt-3 border-top flex-wrap gap-2">
+                        <span class="small text-muted"><i class="bi bi-globe me-1"></i> Portal Resmi: <strong>spmb.sulselprov.go.id</strong></span>
+                        <a href="https://spmb.sulselprov.go.id/" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4 btn-sm fw-bold">Kunjungi Portal Resmi SPMB</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Footer Component -->
+    <site-footer></site-footer>
+
+    <!-- Scripts -->
+    <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>
